@@ -9,6 +9,16 @@
     font-size: $default-font-size;
     transform: skewX(-12deg);
 
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include respond(phone) {
+        transform: skewX(0);
+    }
+
     &__shape {
         width: 15rem;
         height: 15rem;
@@ -19,17 +29,32 @@
         clip-path: circle(50% at 50% 50%);
         transform: translateX(-3rem) skewX(12deg);
         position: relative;
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
     }
 
     &__img {
         height: 100%;
-        transform: translateX(-4rem) scale(1.4);
+        transform: translateX(-4rem) scale(1);
         backface-visibility: hidden;
         transition: all .5s;
+
+        @include respond(tab-port) {
+            transform: translateX(-4rem) scale(1);
+            //backface-visibility: visible;
+            transition: none;
+            filter: blur(2px) brightness(80%);
+        }
     }
 
     &__text {
         transform: skewX(12deg);
+
+        @include respond(phone) {
+            transform: skewX(0);
+        }
     }
 
     &__caption {
@@ -44,6 +69,13 @@
         opacity: 0;
         transition: all .5s;
         backface-visibility: hidden;
+
+        @include respond(tab-port) {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            transition: none;
+            backface-visibility: visible;
+        }
     }
 
     &:hover &__caption {
